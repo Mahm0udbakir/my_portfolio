@@ -101,8 +101,8 @@ class PortfolioAppBar extends StatelessWidget implements PreferredSizeWidget {
                           );
                         },
                         child: Container(
-                          width: 44,
-                          height: 44,
+                          width: 36,
+                          height: 36,
                           decoration: BoxDecoration(
                             color: Colors.blue[700],
                             shape: BoxShape.circle,
@@ -115,7 +115,7 @@ class PortfolioAppBar extends StatelessWidget implements PreferredSizeWidget {
                             ],
                           ),
                           child: const Center(
-                            child: Icon(FontAwesomeIcons.equals, color: Colors.white, size: 28),
+                            child: Icon(FontAwesomeIcons.equals, color: Colors.white, size: 22),
                           ),
                         ),
                       ),

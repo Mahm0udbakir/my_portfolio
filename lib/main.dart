@@ -4,6 +4,19 @@ import 'core/app_theme.dart';
 import 'core/app_router.dart';
 import 'features/app_bar/bloc/app_bar_bloc.dart';
 
+class CursorMode extends InheritedWidget {
+  final ValueNotifier<bool> pointerMode;
+  const CursorMode({required this.pointerMode, required Widget child, Key? key})
+    : super(key: key, child: child);
+
+  static CursorMode? of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<CursorMode>();
+
+  @override
+  bool updateShouldNotify(CursorMode oldWidget) =>
+      pointerMode != oldWidget.pointerMode;
+}
+
 void main() {
   runApp(const MyApp());
 }
@@ -13,18 +26,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.basic,
-      child: BlocProvider(
-        create: (_) => AppBarBloc(),
-        child: MaterialApp.router(
-          title: 'Bakir Portfolio',
-          routerConfig: appRouter,
-          theme: AppTheme.lightTheme,
-          debugShowCheckedModeBanner: false,
-          builder: (context, child) {
-            return _CustomCursorOverlay(child: child!);
-          },
+    final pointerMode = ValueNotifier<bool>(false);
+
+    return CursorMode(
+      pointerMode: pointerMode,
+      child: MouseRegion(
+        cursor: SystemMouseCursors.none,
+        child: BlocProvider(
+          create: (_) => AppBarBloc(),
+          child: MaterialApp.router(
+            title: 'Bakir Portfolio',
+            routerConfig: appRouter,
+            theme: AppTheme.lightTheme,
+            debugShowCheckedModeBanner: false,
+            builder: (context, child) {
+              return _CustomCursorOverlay(child: child!);
+            },
+          ),
         ),
       ),
     );
@@ -58,7 +76,7 @@ class _CustomCursorOverlayState extends State<_CustomCursorOverlay> {
               top: _cursorPosition!.dy,
               child: IgnorePointer(
                 child: Image.asset(
-                  'assets/cursor/watermelon_pointer.png',
+                  'assets/cursor/star_wars_cursor.png',
                   width: 32,
                   height: 32,
                 ),
