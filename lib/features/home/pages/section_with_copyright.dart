@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SectionWithCopyright extends StatelessWidget {
   final Color color;
   final String label;
-  const SectionWithCopyright({required this.color, required this.label, Key? key}) : super(key: key);
+  const SectionWithCopyright({required this.color, required this.label, super.key});
 
   @override
   Widget build(BuildContext context) {

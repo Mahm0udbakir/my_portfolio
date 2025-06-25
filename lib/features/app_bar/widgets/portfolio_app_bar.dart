@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../app_bar/bloc/app_bar_bloc.dart';
+import '../../app_bar/bloc/app_bar_cubit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PortfolioAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -28,15 +28,15 @@ class PortfolioAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: LayoutBuilder(
             builder: (context, constraints) {
               bool isMobile = constraints.maxWidth < 800;
-              final selectedIndex = context.select<AppBarBloc, int>((bloc) {
-                final state = bloc.state;
+              final selectedIndex = context.select<AppBarCubit, int>((cubit) {
+                final state = cubit.state;
                 return state.maybeWhen(section: (i) => i, orElse: () => 0);
               });
               return Row(
                 children: [
                   // Home button (BAKIR) on the left
                   InkWell(
-                    onTap: () => context.read<AppBarBloc>().add(AppBarEvent.sectionChanged(0)),
+                    onTap: () => context.read<AppBarCubit>().changeSection(0),
                     child: Text(
                       'BAKIR',
                       style: TextStyle(
@@ -59,7 +59,7 @@ class PortfolioAppBar extends StatelessWidget implements PreferredSizeWidget {
                                   style: ButtonStyle(
                                     overlayColor: WidgetStateProperty.all(Colors.transparent),
                                   ),
-                                  onPressed: () => context.read<AppBarBloc>().add(AppBarEvent.sectionChanged(item.index)),
+                                  onPressed: () => context.read<AppBarCubit>().changeSection(item.index),
                                   child: Text(
                                     item.label,
                                     style: TextStyle(
@@ -78,27 +78,9 @@ class PortfolioAppBar extends StatelessWidget implements PreferredSizeWidget {
                     Builder(
                       builder: (context) => GestureDetector(
                         onTap: () {
-                          showModalBottomSheet(
-                            context: context,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-                            ),
-                            builder: (_) => Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: navItems.map((item) => ListTile(
-                                    title: Text(
-                                      item.label,
-                                      style: TextStyle(
-                                        color: selectedIndex == item.index ? Colors.blue[700] : Colors.grey,
-                                      ),
-                                    ),
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                      context.read<AppBarBloc>().add(AppBarEvent.sectionChanged(item.index));
-                                    },
-                                  )).toList(),
-                            ),
-                          );
+                          showNavSheet(context, selectedIndex, (i) {
+                            context.read<AppBarCubit>().changeSection(i);
+                          });
                         },
                         child: Container(
                           width: 36,
@@ -137,4 +119,134 @@ class NavItem {
   final String label;
   final int index;
   const NavItem(this.label, this.index);
+}
+
+void showNavSheet(BuildContext context, int selectedIndex, Function(int) onTap) {
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
+    builder: (context) {
+      final width = MediaQuery.of(context).size.width;
+      return Stack(
+        children: [
+          Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 40),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(32)),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minWidth: 90,
+                    maxWidth: width < 500 ? width * 0.40 : 220,
+                  ),
+                  child: IntrinsicWidth(
+                    child: _NavSheet(selectedIndex: selectedIndex, onTap: onTap),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+class _NavSheet extends StatelessWidget {
+  final int selectedIndex;
+  final Function(int) onTap;
+  final List<String> items = ['Home', 'About', 'Work', 'Skills', 'Reviews', 'Contact'];
+  final List<IconData> icons = [
+    FontAwesomeIcons.houseChimney, // Home
+    FontAwesomeIcons.userLarge,    // About
+    FontAwesomeIcons.briefcase,    // Work
+    FontAwesomeIcons.screwdriverWrench, // Skills
+    FontAwesomeIcons.solidCommentDots,  // Reviews
+    FontAwesomeIcons.paperPlane,   // Contact
+  ];
+
+ _NavSheet({required this.selectedIndex, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+          decoration: BoxDecoration(
+            color: Colors.white.withValues(alpha: 0.7),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                blurRadius: 24,
+                offset: Offset(0, -8),
+              ),
+            ],
+            border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 40,
+                height: 5,
+                margin: EdgeInsets.only(bottom: 24),
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              ...List.generate(items.length, (i) {
+                final isSelected = i == selectedIndex;
+                return AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.easeOut,
+                  margin: EdgeInsets.symmetric(vertical: 6),
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(16),
+                    onTap: () {
+                      Navigator.pop(context);
+                      onTap(i);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            icons[i],
+                            color: isSelected ? Colors.blue : Colors.grey[700],
+                            size: 20,
+                          ),
+                          SizedBox(height: 6),
+                          Text(
+                            items[i],
+                            style: TextStyle(
+                              color: isSelected ? Colors.blue : Colors.grey[800],
+                              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }),
+              SizedBox(height: 16),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }

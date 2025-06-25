@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../bloc/app_bar_bloc.dart';
+import '../bloc/app_bar_cubit.dart';
 import '../../../core/app_colors.dart';
 
 /// Navigation dot data
@@ -26,7 +26,7 @@ class SectionNavigationDots extends StatelessWidget {
       top: 0,
       bottom: 0,
       child: Center(
-        child: BlocBuilder<AppBarBloc, AppBarState>(
+        child: BlocBuilder<AppBarCubit, AppBarState>(
           builder: (context, state) {
             int selectedIndex = 0;
             state.maybeWhen(
@@ -45,7 +45,7 @@ class SectionNavigationDots extends StatelessWidget {
                 spacing: 16,
               ),
               onDotClicked: (index) {
-                context.read<AppBarBloc>().add(AppBarEvent.sectionChanged(index));
+                context.read<AppBarCubit>().changeSection(index);
               },
             );
           },

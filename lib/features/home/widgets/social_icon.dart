@@ -9,8 +9,8 @@ class SocialIcon extends StatelessWidget {
     required this.icon,
     required this.onTap,
     required this.tooltip,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

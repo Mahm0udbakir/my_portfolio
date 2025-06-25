@@ -1,4 +1,4 @@
-part of 'app_bar_bloc.dart';
+part of 'app_bar_cubit.dart';
 
 @freezed
 class AppBarState with _$AppBarState {

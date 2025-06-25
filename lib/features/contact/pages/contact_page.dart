@@ -14,4 +14,4 @@ class ContactPage extends StatelessWidget {
       ],
     ),
   );
-}   
+}

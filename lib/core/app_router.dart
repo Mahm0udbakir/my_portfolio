@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../features/app_bar/bloc/app_bar_bloc.dart';
+import 'package:my_portfolio/features/app_bar/bloc/app_bar_cubit.dart';
 import '../features/home/pages/home_page.dart';
 import '../features/about/pages/about_page.dart';
 import '../features/work/pages/work_page.dart';
@@ -11,8 +11,8 @@ import '../features/reviews/pages/reviews_page.dart';
 final appRouter = GoRouter(
   routes: [
     ShellRoute(
-      builder: (context, state, child) => BlocProvider<AppBarBloc>(
-        create: (_) => AppBarBloc(),
+      builder: (context, state, child) => BlocProvider<AppBarCubit>(
+        create: (_) => AppBarCubit(),
         child: child,
       ),
       routes: [

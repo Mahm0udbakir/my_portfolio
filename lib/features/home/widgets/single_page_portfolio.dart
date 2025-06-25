@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../app_bar/bloc/app_bar_bloc.dart';
+import '../../app_bar/bloc/app_bar_cubit.dart';
 
 class SinglePagePortfolio extends StatefulWidget {
   final List<Widget> sections;
@@ -27,7 +27,7 @@ class _SinglePagePortfolioState extends State<SinglePagePortfolio> {
     final newPage = _controller.page?.round() ?? 0;
     if (newPage != _currentPage) {
       _currentPage = newPage;
-      context.read<AppBarBloc>().add(AppBarEvent.sectionChanged(_currentPage));
+      context.read<AppBarCubit>().changeSection(_currentPage);
     }
   }
 
@@ -40,7 +40,7 @@ class _SinglePagePortfolioState extends State<SinglePagePortfolio> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AppBarBloc, AppBarState>(
+    return BlocListener<AppBarCubit, AppBarState>(
       listenWhen: (prev, curr) => prev != curr,
       listener: (context, state) async {
         state.maybeWhen(
@@ -64,7 +64,7 @@ class _SinglePagePortfolioState extends State<SinglePagePortfolio> {
         children: widget.sections,
         onPageChanged: (index) {
           if (!_isAnimating) {
-            context.read<AppBarBloc>().add(AppBarEvent.sectionChanged(index));
+            context.read<AppBarCubit>().changeSection(index);
           }
         },
       ),
