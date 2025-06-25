@@ -41,7 +41,7 @@ class SectionNavigationDots extends StatelessWidget {
                 dotHeight: 10,
                 dotWidth: 10,
                 activeDotColor: AppColors.primaryBlue,
-                dotColor: AppColors.primaryBlue.withOpacity(0.3),
+                dotColor: AppColors.primaryBlue.withValues(alpha: 0.3),
                 spacing: 16,
               ),
               onDotClicked: (index) {

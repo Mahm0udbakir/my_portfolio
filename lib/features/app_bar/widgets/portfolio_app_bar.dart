@@ -5,13 +5,13 @@ import '../../app_bar/bloc/app_bar_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PortfolioAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final List<_NavItem> navItems = const [
-    _NavItem('Home', 0),
-    _NavItem('About', 1),
-    _NavItem('Work', 2),
-    _NavItem('Skills', 3),
-    _NavItem('Reviews', 4),
-    _NavItem('Contact', 5),
+  final List<NavItem> navItems = const [
+    NavItem('Home', 0),
+    NavItem('About', 1),
+    NavItem('Work', 2),
+    NavItem('Skills', 3),
+    NavItem('Reviews', 4),
+    NavItem('Contact', 5),
   ];
 
   const PortfolioAppBar({super.key});
@@ -22,7 +22,7 @@ class PortfolioAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
         child: Container(
-          color: Colors.white.withOpacity(0.4),
+          color: Colors.white.withValues(alpha: 0.4),
           padding: const EdgeInsets.symmetric(horizontal: 24),
           height: preferredSize.height,
           child: LayoutBuilder(
@@ -57,7 +57,7 @@ class PortfolioAppBar extends StatelessWidget implements PreferredSizeWidget {
                                 padding: const EdgeInsets.symmetric(horizontal: 12),
                                 child: TextButton(
                                   style: ButtonStyle(
-                                    overlayColor: MaterialStateProperty.all(Colors.transparent),
+                                    overlayColor: WidgetStateProperty.all(Colors.transparent),
                                   ),
                                   onPressed: () => context.read<AppBarBloc>().add(AppBarEvent.sectionChanged(item.index)),
                                   child: Text(
@@ -108,7 +108,7 @@ class PortfolioAppBar extends StatelessWidget implements PreferredSizeWidget {
                             shape: BoxShape.circle,
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.blue.withOpacity(0.15),
+                                color: Colors.blue.withValues(alpha: 0.15),
                                 blurRadius: 8,
                                 offset: const Offset(0, 2),
                               ),
@@ -133,8 +133,8 @@ class PortfolioAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(64);
 }
 
-class _NavItem {
+class NavItem {
   final String label;
   final int index;
-  const _NavItem(this.label, this.index);
+  const NavItem(this.label, this.index);
 }

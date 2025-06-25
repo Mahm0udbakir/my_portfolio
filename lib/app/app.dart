@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'core/app_theme.dart';
-import 'core/app_router.dart';
-import 'features/app_bar/bloc/app_bar_bloc.dart';
-
-void main() {
-  runApp(const MyApp());
-}
+import '../core/app_theme.dart';
+import '../core/app_router.dart';
+import '../features/app_bar/bloc/app_bar_bloc.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -23,4 +19,4 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-}
+} 
