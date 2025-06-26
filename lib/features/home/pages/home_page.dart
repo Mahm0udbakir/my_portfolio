@@ -11,7 +11,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
     extendBodyBehindAppBar: true,
-    appBar: const PortfolioAppBar(),
     body: Stack(
       children: [
         SinglePagePortfolio(
@@ -44,6 +43,10 @@ class HomePage extends StatelessWidget {
         ),
         const SectionNavigationDots(),
         const SocialIcons(),
+        const Align(
+          alignment: Alignment.topCenter,
+          child: PortfolioAppBar(),
+        ),
       ],
     ),
   );
