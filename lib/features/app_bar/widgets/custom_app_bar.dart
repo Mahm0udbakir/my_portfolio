@@ -1,11 +1,15 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_portfolio/core/app_colors.dart';
+import 'package:my_portfolio/features/app_bar/widgets/logo_button.dart';
+import 'package:my_portfolio/features/app_bar/widgets/nav_item.dart';
 import 'package:my_portfolio/features/app_bar/widgets/show_nav_sheet.dart';
 import '../../app_bar/bloc/app_bar_cubit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_portfolio/features/app_bar/widgets/nav_sections.dart';
 
-class PortfolioAppBar extends StatelessWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<NavItem> navItems = const [
     NavItem('Home', 0),
     NavItem('About', 1),
@@ -15,13 +19,13 @@ class PortfolioAppBar extends StatelessWidget implements PreferredSizeWidget {
     NavItem('Contact', 5),
   ];
 
-  const PortfolioAppBar({super.key});
+  const CustomAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 90, sigmaY: 90),
+        filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           height: preferredSize.height,
@@ -34,58 +38,12 @@ class PortfolioAppBar extends StatelessWidget implements PreferredSizeWidget {
               });
               return Row(
                 children: [
-                  // Home button (BAKIR) on the left
-                  InkWell(
-                    onTap: () => context.read<AppBarCubit>().changeSection(0),
-                    child: Text(
-                      'BAKIR',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 28,
-                        color: Colors.blue[700],
-                        letterSpacing: 2,
-                      ),
-                    ),
-                  ),
-                  // Centered navigation options (web/tablet)
+                  const LogoButton(),
                   if (!isMobile)
-                    Expanded(
-                      child: Center(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children:
-                              navItems
-                                  .map(
-                                    (item) => Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 12,
-                                      ),
-                                      child: TextButton(
-                                        style: ButtonStyle(
-                                          overlayColor: WidgetStateProperty.all(
-                                            Colors.transparent,
-                                          ),
-                                        ),
-                                        onPressed:
-                                            () => context
-                                                .read<AppBarCubit>()
-                                                .changeSection(item.index),
-                                        child: Text(
-                                          item.label,
-                                          style: TextStyle(
-                                            color:
-                                                selectedIndex == item.index
-                                                    ? Colors.blue[700]
-                                                    : Colors.grey,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                  .toList(),
-                        ),
-                      ),
+                    NavSections(
+                      navItems: navItems,
+                      selectedIndex: selectedIndex,
+                      onNavItemTap: (index) => context.read<AppBarCubit>().changeSection(index),
                     ),
                   if (isMobile) const Spacer(),
                   // Hamburger menu on the top right (mobile only)
@@ -102,7 +60,7 @@ class PortfolioAppBar extends StatelessWidget implements PreferredSizeWidget {
                               width: 36,
                               height: 36,
                               decoration: BoxDecoration(
-                                color: Colors.blue[700],
+                                color: AppColors.primary,
                                 shape: BoxShape.circle,
                                 boxShadow: [
                                   BoxShadow(
@@ -134,11 +92,3 @@ class PortfolioAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(64);
 }
-
-class NavItem {
-  final String label;
-  final int index;
-  const NavItem(this.label, this.index);
-}
-
-

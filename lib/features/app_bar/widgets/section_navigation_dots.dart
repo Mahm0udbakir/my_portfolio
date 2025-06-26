@@ -40,8 +40,8 @@ class SectionNavigationDots extends StatelessWidget {
               effect: WormEffect(
                 dotHeight: 10,
                 dotWidth: 10,
-                activeDotColor: AppColors.primaryBlue,
-                dotColor: AppColors.primaryBlue.withValues(alpha: 0.3),
+                activeDotColor: AppColors.primary,
+                dotColor: AppColors.primary.withValues(alpha: 0.3),
                 spacing: 16,
               ),
               onDotClicked: (index) {

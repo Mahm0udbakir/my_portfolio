@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../app_bar/widgets/portfolio_app_bar.dart';
+import '../../app_bar/widgets/custom_app_bar.dart';
 import '../widgets/single_page_portfolio.dart';
 import '../../app_bar/widgets/section_navigation_dots.dart';
 import '../widgets/social_icons.dart';
@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
         const SocialIcons(),
         const Align(
           alignment: Alignment.topCenter,
-          child: PortfolioAppBar(),
+          child: CustomAppBar(),
         ),
       ],
     ),
