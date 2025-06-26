@@ -7,15 +7,15 @@ class NavSheet extends StatelessWidget {
   final Function(int) onTap;
   final List<String> items = ['Home', 'About', 'Work', 'Skills', 'Reviews', 'Contact'];
   final List<IconData> icons = [
-    FontAwesomeIcons.houseChimney, // Home
-    FontAwesomeIcons.userLarge,    // About
-    FontAwesomeIcons.briefcase,    // Work
-    FontAwesomeIcons.screwdriverWrench, // Skills
-    FontAwesomeIcons.solidCommentDots,  // Reviews
-    FontAwesomeIcons.paperPlane,   // Contact
+    FontAwesomeIcons.houseChimney, 
+    FontAwesomeIcons.userLarge,    
+    FontAwesomeIcons.briefcase,    
+    FontAwesomeIcons.screwdriverWrench, 
+    FontAwesomeIcons.solidCommentDots,  
+    FontAwesomeIcons.paperPlane,   
   ];
 
-  NavSheet({required this.selectedIndex, required this.onTap});
+  NavSheet({super.key, required this.selectedIndex, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -97,4 +97,4 @@ class NavSheet extends StatelessWidget {
       ),
     );
   }
-} 
+}   

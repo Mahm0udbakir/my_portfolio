@@ -10,33 +10,34 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key});
   @override
   Widget build(BuildContext context) => Scaffold(
+    extendBodyBehindAppBar: true,
     appBar: const PortfolioAppBar(),
     body: Stack(
       children: [
         SinglePagePortfolio(
           sections: [
             const ColoredBox(
-              color: AppColors.darkGrey,
+              color: AppColors.grey,
               child: Center(child: Text('HOME')),
             ),
             const SectionWithCopyright(
-              color: AppColors.lightGrey,
+              color: AppColors.white,
               label: 'ABOUT',
             ),
             const SectionWithCopyright(
-              color: AppColors.darkGrey,
+              color: AppColors.grey,
               label: 'WORK',
             ),
             const SectionWithCopyright(
-              color: AppColors.lightGrey,
+              color: AppColors.white,
               label: 'SKILLS',
             ),
             const SectionWithCopyright(
-              color: AppColors.darkGrey,
+              color: AppColors.grey,
               label: 'REVIEWS',
             ),
             const SectionWithCopyright(
-              color: AppColors.lightGrey,
+              color: AppColors.white,
               label: 'CONTACT',
             ),
           ],
