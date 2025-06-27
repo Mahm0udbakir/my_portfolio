@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../app_bar/bloc/app_bar_cubit.dart';
-import '../../../core/app_colors.dart';
+import '../bloc/app_bar_cubit.dart';
+import '../../../utils/text_styles.dart';
+import '../../../utils/strings.dart';
 
 class LogoButton extends StatelessWidget {
   const LogoButton({super.key});
@@ -11,13 +12,8 @@ class LogoButton extends StatelessWidget {
     return InkWell(
       onTap: () => context.read<AppBarCubit>().changeSection(0),
       child: Text(
-        'BAKIR',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 28,
-          color: AppColors.primary,
-          letterSpacing: 2,
-        ),
+        MyAppStrings.logoTitle,
+        style: MyTextStyles.montserrat70028primary,
       ),
     );
   }

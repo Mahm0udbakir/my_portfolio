@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../bloc/app_bar_cubit.dart';
-import '../../../core/app_colors.dart';
-
-/// Navigation dot data
-class SectionNavDot {
-  final String label;
-  final int index;
-  const SectionNavDot(this.label, this.index);
-}
+import '../app_bar/bloc/app_bar_cubit.dart';
+import '../../utils/app_colors.dart';
+import '../constants/navigation_dots.dart';
 
 class SectionNavigationDots extends StatelessWidget {
   const SectionNavigationDots({super.key});
-
-  static const int dotCount = 6;
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +27,11 @@ class SectionNavigationDots extends StatelessWidget {
             );
             return AnimatedSmoothIndicator(
               activeIndex: selectedIndex,
-              count: dotCount,
+              count: kSectionNames.length,
               axisDirection: Axis.vertical,
               effect: WormEffect(
-                dotHeight: 10,
-                dotWidth: 10,
+                dotHeight: 8,
+                dotWidth: 8,
                 activeDotColor: AppColors.primary,
                 dotColor: AppColors.primary.withValues(alpha: 0.3),
                 spacing: 16,

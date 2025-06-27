@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/core/app_colors.dart';
-import 'package:my_portfolio/features/app_bar/widgets/nav_item.dart';
+import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/nav_item.dart';
+import 'package:my_portfolio/core/utils/text_styles.dart';
 
-class NavSections extends StatelessWidget {
+class AppBarSections extends StatelessWidget {
   final List<NavItem> navItems;
   final int selectedIndex;
   final void Function(int) onNavItemTap;
 
-  const NavSections({
+  const AppBarSections({
     super.key,
     required this.navItems,
     required this.selectedIndex,
@@ -33,12 +33,9 @@ class NavSections extends StatelessWidget {
                     onPressed: () => onNavItemTap(item.index),
                     child: Text(
                       item.label,
-                      style: TextStyle(
-                        color: selectedIndex == item.index
-                            ? AppColors.primary
-                            : Colors.grey,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: selectedIndex == item.index
+                          ? MyTextStyles.montserrat60016primary
+                          : MyTextStyles.montserrat40016grey,
                     ),
                   ),
                 ),

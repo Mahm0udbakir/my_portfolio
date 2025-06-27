@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/nav_sheet.dart';
+import 'nav_sheet.dart';
 
 void showNavSheet(BuildContext context, int selectedIndex, Function(int) onTap) {
   showModalBottomSheet(

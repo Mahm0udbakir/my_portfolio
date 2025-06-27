@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../core/app_theme.dart';
-import '../core/app_router.dart';
-import '../features/app_bar/bloc/app_bar_cubit.dart';
+import '../core/utils/app_theme.dart';
+import '../core/routes/app_router.dart';
+import '../core/shared_widgets/app_bar/bloc/app_bar_cubit.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

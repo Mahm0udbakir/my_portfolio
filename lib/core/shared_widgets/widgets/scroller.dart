@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../app_bar/bloc/app_bar_cubit.dart';
+import '../app_bar/bloc/app_bar_cubit.dart';
 
-class SinglePagePortfolio extends StatefulWidget {
+class Scroller extends StatefulWidget {
   final List<Widget> sections;
-  const SinglePagePortfolio({super.key, required this.sections});
+  const Scroller({super.key, required this.sections});
 
   @override
-  State<SinglePagePortfolio> createState() => _SinglePagePortfolioState();
+  State<Scroller> createState() => _ScrollerState();
 }
 
-class _SinglePagePortfolioState extends State<SinglePagePortfolio> {
+class _ScrollerState extends State<Scroller> {
   late final PageController _controller;
   int _currentPage = 0;
   bool _isAnimating = false;
