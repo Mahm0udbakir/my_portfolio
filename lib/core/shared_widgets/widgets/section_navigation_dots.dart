@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../app_bar/bloc/app_bar_cubit.dart';
+import '../app_bar/cubit/app_bar_cubit.dart';
 import '../../utils/app_colors.dart';
 import '../constants/navigation_dots.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../bloc/app_bar_cubit.dart';
+import '../cubit/app_bar_cubit.dart';
 import '../../../utils/text_styles.dart';
 import '../../../utils/strings.dart';
 

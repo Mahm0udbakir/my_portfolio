@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/logo_button.dart';
 import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/nav_item.dart';
-import '../bloc/app_bar_cubit.dart';
+import '../cubit/app_bar_cubit.dart';
 import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/nav_sections.dart';
 import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/mobile_menu_button.dart';
 
@@ -44,14 +44,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       onNavItemTap: (index) => context.read<AppBarCubit>().changeSection(index),
                     ),
                   // Hamburger menu on the top right (mobile only)
-                  if (isMobile)...[
                     const Spacer(),
                     MobileMenuButton(
                       selectedIndex: selectedIndex,
                       onSectionSelected: (i) => context.read<AppBarCubit>().changeSection(i),
                     ),
                   ],
-                ],
               );
             },
           ),
