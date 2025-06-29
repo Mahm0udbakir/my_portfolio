@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/shared_widgets/app_bar/cubit/app_bar_cubit.dart';
+import 'package:my_portfolio/core/shared_widgets/side_menu/cubit/side_menu_cubit.dart';
 import 'package:my_portfolio/core/shared_widgets/widgets/copyright_tag.dart';
 import 'package:my_portfolio/core/shared_widgets/widgets/scroller.dart';
 import 'package:my_portfolio/features/about/views/about_page.dart';
@@ -51,8 +52,11 @@ final appRouter = GoRouter(
                       right: 0,
                       top: 0,
                       bottom: 0,
-                      width: MediaQuery.of(context).size.width * 0.60,
-                      child: SideMenu(),
+                      width: MediaQuery.of(context).size.width * 0.70,
+                      child: BlocProvider(
+                        create: (context) => SideMenuCubit(),
+                        child: SideMenu(),
+                      ),
                     ),
                 ],
               );

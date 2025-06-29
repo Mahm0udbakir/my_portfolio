@@ -1,24 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/shared_widgets/side_menu/rive_assets.dart';
 import 'package:rive/rive.dart';
 
 class SideMenuTile extends StatelessWidget {
-  const SideMenuTile({super.key});
+  final RiveAsset menu;
+  final bool isActive;
+  final VoidCallback onTap;
+  final ValueChanged<Artboard> riveOnInit;
+  const SideMenuTile({
+    super.key,
+    required this.menu,
+    required this.isActive,
+    required this.onTap,
+    required this.riveOnInit,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
-        ListTile(
-          leading: SizedBox(
-            height: 34,
-            width: 34,
-            child: RiveAnimation.asset(
-              "assets/RiveAssets/icons.riv",
-              artboard: "HOME",
-              onInit: (artboard) {},
+        AnimatedPositioned(
+          duration: const Duration(milliseconds: 250),
+          right: 0,
+          height: 56,
+          width: isActive ? MediaQuery.of(context).size.width * 0.70 : 0,
+
+          child: Container(
+            decoration: BoxDecoration(
+              color: Color(0xff6792ff),
+              borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
           ),
-          title: const Text("Home", style: TextStyle(color: Colors.white)),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListTile(
+            onTap: onTap,
+            leading: SizedBox(
+              height: 34,
+              width: 34,
+              child: RiveAnimation.asset(
+                menu.src,
+                artboard: menu.artboard,
+                onInit: riveOnInit,
+              ),
+            ),
+            title: Text(
+              menu.title,
+              style: const TextStyle(color: Colors.white),
+            ),
+          ),
         ),
       ],
     );
