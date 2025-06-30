@@ -24,7 +24,7 @@ class SideMenuTile extends StatelessWidget {
           right: 0,
           height: 56,
           width: isActive ? MediaQuery.of(context).size.width * 0.70 : 0,
-
+          curve: Curves.fastOutSlowIn,
           child: Container(
             decoration: BoxDecoration(
               color: Color(0xff6792ff),

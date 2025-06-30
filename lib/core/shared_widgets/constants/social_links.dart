@@ -7,11 +7,7 @@ class SocialLink {
 }
 
 const List<SocialLink> kSocialLinks = [
-  SocialLink(
-    icon: FontAwesomeIcons.facebook,
-    url: 'https://facebook.com/yourusername',
-  ),
-  SocialLink(
+   SocialLink(
     icon: FontAwesomeIcons.instagram,
     url: 'https://instagram.com/mahmoud_bakir__',
   ),

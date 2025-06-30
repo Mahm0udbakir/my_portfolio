@@ -23,6 +23,7 @@ class SectionNavigationDots extends StatelessWidget {
             int selectedIndex = 0;
             state.maybeWhen(
               section: (index) => selectedIndex = index,
+              sideMenuState: (_, sectionIndex) => selectedIndex = sectionIndex,
               orElse: () {},
             );
             return AnimatedSmoothIndicator(

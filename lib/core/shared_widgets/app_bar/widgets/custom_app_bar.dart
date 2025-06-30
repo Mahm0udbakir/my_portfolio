@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/logo_button.dart';
 import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/nav_item.dart';
+import 'package:my_portfolio/core/utils/app_colors.dart';
 import '../cubit/app_bar_cubit.dart';
 import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/nav_sections.dart';
-import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/mobile_menu_button.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<NavItem> navItems = const [
@@ -17,7 +17,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     NavItem('Contact', 5),
   ];
 
-  const CustomAppBar({super.key});
+  final void Function(bool isClosed)? onMenuToggle;
+
+  const CustomAppBar({super.key, this.onMenuToggle});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               bool isMobile = constraints.maxWidth < 800;
               final selectedIndex = context.select<AppBarCubit, int>((cubit) {
                 final state = cubit.state;
-                return state.maybeWhen(section: (i) => i, orElse: () => 0);
+                return state.maybeWhen(
+                  section: (i) => i,
+                  sideMenuState: (_, sectionIndex) => sectionIndex,
+                  orElse: () => 0,
+                );
               });
               return Row(
                 children: [
@@ -44,12 +50,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       onNavItemTap: (index) => context.read<AppBarCubit>().changeSection(index),
                     ),
                   // Hamburger menu on the top right (mobile only)
-                    const Spacer(),
-                    MobileMenuButton(
-                      selectedIndex: selectedIndex,
-                      onSectionSelected: (i) => context.read<AppBarCubit>().changeSection(i),
-                    ),
-                  ],
+                  const Spacer(),
+                ],
               );
             },
           ),

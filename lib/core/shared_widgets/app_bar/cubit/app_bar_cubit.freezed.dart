@@ -21,32 +21,38 @@ mixin _$AppBarState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(int index) section,
+    required TResult Function(bool isClosed, int sectionIndex) sideMenuState,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(int index)? section,
+    TResult? Function(bool isClosed, int sectionIndex)? sideMenuState,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(int index)? section,
+    TResult Function(bool isClosed, int sectionIndex)? sideMenuState,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Section value) section,
+    required TResult Function(_SideMenuState value) sideMenuState,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Section value)? section,
+    TResult? Function(_SideMenuState value)? sideMenuState,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Section value)? section,
+    TResult Function(_SideMenuState value)? sideMenuState,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -118,6 +124,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(int index) section,
+    required TResult Function(bool isClosed, int sectionIndex) sideMenuState,
   }) {
     return initial();
   }
@@ -127,6 +134,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(int index)? section,
+    TResult? Function(bool isClosed, int sectionIndex)? sideMenuState,
   }) {
     return initial?.call();
   }
@@ -136,6 +144,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(int index)? section,
+    TResult Function(bool isClosed, int sectionIndex)? sideMenuState,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -149,6 +158,7 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Section value) section,
+    required TResult Function(_SideMenuState value) sideMenuState,
   }) {
     return initial(this);
   }
@@ -158,6 +168,7 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Section value)? section,
+    TResult? Function(_SideMenuState value)? sideMenuState,
   }) {
     return initial?.call(this);
   }
@@ -167,6 +178,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Section value)? section,
+    TResult Function(_SideMenuState value)? sideMenuState,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -252,6 +264,7 @@ class _$SectionImpl implements _Section {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(int index) section,
+    required TResult Function(bool isClosed, int sectionIndex) sideMenuState,
   }) {
     return section(index);
   }
@@ -261,6 +274,7 @@ class _$SectionImpl implements _Section {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(int index)? section,
+    TResult? Function(bool isClosed, int sectionIndex)? sideMenuState,
   }) {
     return section?.call(index);
   }
@@ -270,6 +284,7 @@ class _$SectionImpl implements _Section {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(int index)? section,
+    TResult Function(bool isClosed, int sectionIndex)? sideMenuState,
     required TResult orElse(),
   }) {
     if (section != null) {
@@ -283,6 +298,7 @@ class _$SectionImpl implements _Section {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Section value) section,
+    required TResult Function(_SideMenuState value) sideMenuState,
   }) {
     return section(this);
   }
@@ -292,6 +308,7 @@ class _$SectionImpl implements _Section {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Section value)? section,
+    TResult? Function(_SideMenuState value)? sideMenuState,
   }) {
     return section?.call(this);
   }
@@ -301,6 +318,7 @@ class _$SectionImpl implements _Section {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Section value)? section,
+    TResult Function(_SideMenuState value)? sideMenuState,
     required TResult orElse(),
   }) {
     if (section != null) {
@@ -319,5 +337,171 @@ abstract class _Section implements AppBarState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SectionImplCopyWith<_$SectionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SideMenuStateImplCopyWith<$Res> {
+  factory _$$SideMenuStateImplCopyWith(
+    _$SideMenuStateImpl value,
+    $Res Function(_$SideMenuStateImpl) then,
+  ) = __$$SideMenuStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isClosed, int sectionIndex});
+}
+
+/// @nodoc
+class __$$SideMenuStateImplCopyWithImpl<$Res>
+    extends _$AppBarStateCopyWithImpl<$Res, _$SideMenuStateImpl>
+    implements _$$SideMenuStateImplCopyWith<$Res> {
+  __$$SideMenuStateImplCopyWithImpl(
+    _$SideMenuStateImpl _value,
+    $Res Function(_$SideMenuStateImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of AppBarState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? isClosed = null, Object? sectionIndex = null}) {
+    return _then(
+      _$SideMenuStateImpl(
+        isClosed:
+            null == isClosed
+                ? _value.isClosed
+                : isClosed // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        sectionIndex:
+            null == sectionIndex
+                ? _value.sectionIndex
+                : sectionIndex // ignore: cast_nullable_to_non_nullable
+                    as int,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$SideMenuStateImpl implements _SideMenuState {
+  const _$SideMenuStateImpl({
+    required this.isClosed,
+    required this.sectionIndex,
+  });
+
+  @override
+  final bool isClosed;
+  @override
+  final int sectionIndex;
+
+  @override
+  String toString() {
+    return 'AppBarState.sideMenuState(isClosed: $isClosed, sectionIndex: $sectionIndex)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SideMenuStateImpl &&
+            (identical(other.isClosed, isClosed) ||
+                other.isClosed == isClosed) &&
+            (identical(other.sectionIndex, sectionIndex) ||
+                other.sectionIndex == sectionIndex));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isClosed, sectionIndex);
+
+  /// Create a copy of AppBarState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SideMenuStateImplCopyWith<_$SideMenuStateImpl> get copyWith =>
+      __$$SideMenuStateImplCopyWithImpl<_$SideMenuStateImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(int index) section,
+    required TResult Function(bool isClosed, int sectionIndex) sideMenuState,
+  }) {
+    return sideMenuState(isClosed, sectionIndex);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(int index)? section,
+    TResult? Function(bool isClosed, int sectionIndex)? sideMenuState,
+  }) {
+    return sideMenuState?.call(isClosed, sectionIndex);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(int index)? section,
+    TResult Function(bool isClosed, int sectionIndex)? sideMenuState,
+    required TResult orElse(),
+  }) {
+    if (sideMenuState != null) {
+      return sideMenuState(isClosed, sectionIndex);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Section value) section,
+    required TResult Function(_SideMenuState value) sideMenuState,
+  }) {
+    return sideMenuState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Section value)? section,
+    TResult? Function(_SideMenuState value)? sideMenuState,
+  }) {
+    return sideMenuState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Section value)? section,
+    TResult Function(_SideMenuState value)? sideMenuState,
+    required TResult orElse(),
+  }) {
+    if (sideMenuState != null) {
+      return sideMenuState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SideMenuState implements AppBarState {
+  const factory _SideMenuState({
+    required final bool isClosed,
+    required final int sectionIndex,
+  }) = _$SideMenuStateImpl;
+
+  bool get isClosed;
+  int get sectionIndex;
+
+  /// Create a copy of AppBarState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SideMenuStateImplCopyWith<_$SideMenuStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

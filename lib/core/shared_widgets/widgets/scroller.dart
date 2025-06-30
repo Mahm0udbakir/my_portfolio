@@ -55,6 +55,17 @@ class _ScrollerState extends State<Scroller> {
               _isAnimating = false;
             }
           },
+          sideMenuState: (_, sectionIndex) async {
+            if (_controller.hasClients && _controller.page?.round() != sectionIndex) {
+              _isAnimating = true;
+              await _controller.animateToPage(
+                sectionIndex,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInOut,
+              );
+              _isAnimating = false;
+            }
+          },
           orElse: () {},
         );
       },
