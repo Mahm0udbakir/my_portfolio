@@ -7,10 +7,8 @@ import 'package:my_portfolio/core/shared_widgets/side_menu/cubit/section_header.
 import 'package:my_portfolio/core/shared_widgets/side_menu/rive_utils.dart';
 import 'package:my_portfolio/core/shared_widgets/side_menu/side_menu_tile.dart';
 import 'package:my_portfolio/core/shared_widgets/widgets/functions.dart';
-import 'package:my_portfolio/core/shared_widgets/widgets/social_icons.dart';
 import 'package:rive/rive.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../widgets/social_icon.dart';
 

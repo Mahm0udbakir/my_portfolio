@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/logo_button.dart';
 import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/nav_item.dart';
-import 'package:my_portfolio/core/utils/app_colors.dart';
 import '../cubit/app_bar_cubit.dart';
 import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/nav_sections.dart';
 

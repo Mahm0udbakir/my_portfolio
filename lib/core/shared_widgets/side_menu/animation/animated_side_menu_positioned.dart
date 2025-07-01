@@ -7,12 +7,12 @@ class AnimatedSideMenuPositioned extends StatelessWidget {
   final Widget child;
 
   const AnimatedSideMenuPositioned({
-    Key? key,
+    super.key,
     required this.isMobile,
     required this.isClosed,
     required this.maxOffset,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

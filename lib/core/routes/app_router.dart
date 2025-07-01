@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:my_portfolio/core/shared_widgets/side_menu/animation/animated_app_router_screen.dart';
+import 'package:my_portfolio/core/shared_widgets/side_menu/animation/home_shell_animation_controller.dart';
 import 'package:my_portfolio/features/about/views/about_page.dart';
 import '../../features/home/views/home_page.dart';
 import '../../features/work/views/work_page.dart';
@@ -10,8 +10,7 @@ import '../../features/reviews/views/reviews_page.dart';
 final appRouter = GoRouter(
   routes: [
     ShellRoute(
-      builder:
-          (context, state, child) => AnimatedHomeShell(state: state),
+      builder: (context, state, child) => HomeShellAnimationController(),
       routes: [
         GoRoute(
           path: '/',

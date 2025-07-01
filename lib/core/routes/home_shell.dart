@@ -2,95 +2,61 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_portfolio/core/shared_widgets/app_bar/cubit/app_bar_cubit.dart';
 import 'package:my_portfolio/core/shared_widgets/side_menu/cubit/side_menu_cubit.dart';
-import 'package:my_portfolio/core/shared_widgets/side_menu/animation/animated_main_transform.dart';
-import 'package:my_portfolio/core/shared_widgets/side_menu/animation/animated_side_menu_positioned.dart';
-import 'package:my_portfolio/core/shared_widgets/side_menu/side_menu.dart';
-import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/custom_app_bar.dart';
 import 'package:my_portfolio/core/shared_widgets/widgets/copyright_tag.dart';
 import 'package:my_portfolio/core/shared_widgets/widgets/scroller.dart';
+import 'package:my_portfolio/core/utils/app_colors.dart';
 import 'package:my_portfolio/features/about/views/about_page.dart';
 import 'package:my_portfolio/features/home/views/home_page.dart';
 import 'package:my_portfolio/features/work/views/work_page.dart';
 import 'package:my_portfolio/features/skills/views/skills_page.dart';
 import 'package:my_portfolio/features/contact/views/contact_page.dart';
 import 'package:my_portfolio/features/reviews/views/reviews_page.dart';
+import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/custom_app_bar.dart';
 import 'package:my_portfolio/core/shared_widgets/widgets/section_navigation_dots.dart';
 import 'package:my_portfolio/core/shared_widgets/widgets/social_icons.dart';
+import 'package:my_portfolio/core/shared_widgets/side_menu/side_menu.dart';
+import 'package:my_portfolio/core/shared_widgets/side_menu/animation/animated_main_transform.dart';
+import 'package:my_portfolio/core/shared_widgets/side_menu/animation/animated_side_menu_positioned.dart';
 
-class AnimatedMainLayout extends StatefulWidget {
-  const AnimatedMainLayout({super.key});
-
+class HomeShell extends StatelessWidget {
   static const double maxOffsetFraction = 0.7;
+  final AnimationController animationController;
+  final Animation<double> translateAnimation;
+  final Animation<double> scaleAnimation;
+  final bool isClosed;
 
-  @override
-  State<AnimatedMainLayout> createState() => _AnimatedMainLayoutState();
-}
-
-class _AnimatedMainLayoutState extends State<AnimatedMainLayout> with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _translateAnimation;
-  late Animation<double> _scaleAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 200),
-    );
-    _translateAnimation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.fastOutSlowIn,
-      ),
-    );
-    _scaleAnimation = Tween<double>(begin: 1, end: 0.8).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.fastOutSlowIn,
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
+  const HomeShell({
+    super.key,
+    required this.animationController,
+    required this.translateAnimation,
+    required this.scaleAnimation,
+    required this.isClosed,
+  });
 
   @override
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.of(context).size.width < 800;
-    final maxOffset = MediaQuery.of(context).size.width * AnimatedMainLayout.maxOffsetFraction;
-    return BlocListener<AppBarCubit, AppBarState>(
-      listener: (context, state) {
-        final isClosed = state.maybeWhen(
-          sideMenuState: (isClosed, _) => isClosed,
-          orElse: () => true,
-        );
-        if (isClosed) {
-          _animationController.reverse();
-        } else {
-          _animationController.forward();
-        }
-      },
+    final maxOffset =
+        MediaQuery.of(context).size.width * HomeShell.maxOffsetFraction;
+    return Container(
+      color: const Color(0xff021c4d),
       child: BlocProvider<SideMenuCubit>(
         create: (context) => SideMenuCubit(),
         child: Stack(
           children: [
             AnimatedSideMenuPositioned(
               isMobile: isMobile,
-              isClosed: context.select((AppBarCubit cubit) => cubit.state.maybeWhen(sideMenuState: (isClosed, _) => isClosed, orElse: () => true)),
+              isClosed: isClosed,
               maxOffset: maxOffset,
               child: SideMenu(),
             ),
             AnimatedBuilder(
-              animation: _animationController,
+              animation: animationController,
               builder: (context, child) {
                 return AnimatedMainTransform(
-                  translateAnimation: _translateAnimation,
-                  scaleAnimation: _scaleAnimation,
-                  animationController: _animationController,
+                  translateAnimation: translateAnimation,
+                  scaleAnimation: scaleAnimation,
+                  animationController: animationController,
                   maxOffset: maxOffset,
                   child: Scaffold(
                     appBar: CustomAppBar(),
@@ -127,7 +93,7 @@ class _AnimatedMainLayoutState extends State<AnimatedMainLayout> with SingleTick
                     return IconButton(
                       icon: Icon(
                         isClosed ? Icons.menu : Icons.close,
-                        color: Colors.white,
+                        color: isClosed ? AppColors.primary : Colors.white,
                       ),
                       onPressed: () {
                         context.read<AppBarCubit>().toggleSideMenu();
@@ -141,4 +107,4 @@ class _AnimatedMainLayoutState extends State<AnimatedMainLayout> with SingleTick
       ),
     );
   }
-} 
+}
