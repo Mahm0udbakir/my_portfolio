@@ -1,36 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:rive/rive.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_portfolio/core/shared_widgets/app_bar/cubit/app_bar_cubit.dart';
+import 'package:my_portfolio/core/utils/app_colors.dart';
 
 class MobileMenuButton extends StatelessWidget {
+  final double top;
+  final double right;
+  final bool isClosed;
 
   const MobileMenuButton({
     super.key,
+    this.top = 16,
+    this.right = 24,
+    required this.isClosed,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: GestureDetector(
-        child: Container(
-          margin: const EdgeInsets.only(left: 16),
-          height: 40,
-          width: 40,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                offset: Offset(0, 3),
-                blurRadius: 8,
-              ),
-            ],
-          ),
-          child: RiveAnimation.asset(
-            "assets/RiveAssets/menu_button.riv",
-          ),
+    return Positioned(
+      top: top,
+      right: right,
+      child: IconButton(
+        icon: Icon(
+          isClosed ? FontAwesomeIcons.sliders : FontAwesomeIcons.xmark,
+          color: isClosed ? AppColors.primary : Colors.white,
         ),
+        onPressed: () {
+          context.read<AppBarCubit>().toggleSideMenu();
+        },
       ),
     );
   }
-} 
+}

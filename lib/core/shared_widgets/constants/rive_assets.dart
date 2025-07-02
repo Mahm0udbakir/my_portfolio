@@ -1,22 +1,30 @@
 import 'package:rive/rive.dart';
 
+/// Data model for Rive animation assets used in navigation.
+/// 
+/// Represents a navigation menu item with its associated
+/// Rive animation artboard, state machine, and metadata.
 class RiveAsset {
-  final String artboard, stateMachineName, title, src;
+  final String artboard;
+  final String stateMachineName;
+  final String title;
+  final String src;
   late SMIBool? input;
 
-  RiveAsset(this.src, {
+  RiveAsset(
+    this.src, {
     required this.artboard,
     required this.stateMachineName,
     required this.title,
     this.input,
   });
-
-  set setInput(SMIBool status) {
-    input = status;
-  }
 }
 
-List<RiveAsset> sideMenus = [
+/// Navigation menu items with their associated Rive animations.
+/// 
+/// Contains all the menu items for the side navigation,
+/// each with its own Rive animation configuration.
+final List<RiveAsset> sideMenus = [
   RiveAsset(
     "assets/RiveAssets/icons.riv",
     artboard: "HOME",

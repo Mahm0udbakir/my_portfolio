@@ -1,30 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/core/shared_widgets/widgets/functions.dart';
-import '../constants/social_links.dart';
-import 'package:my_portfolio/core/shared_widgets/widgets/social_icon.dart';
+import 'package:my_portfolio/core/shared_widgets/models/social_links.dart';
+import 'package:my_portfolio/core/utils/url_launcher.dart';
+import 'social_icon.dart';
 
-class SocialIcons extends StatelessWidget {
-  const SocialIcons({super.key});
+class SocialMediaLinks extends StatelessWidget {
+  static const double _mobileBreakpoint = 800.0;
+  static const double _leftPosition = 24.0;
+  static const double _bottomPosition = 24.0;
+  static const double _iconSpacing = 4.0;
+
+  const SocialMediaLinks({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = MediaQuery.of(context).size.width < 800;
+    final isMobile = MediaQuery.of(context).size.width < _mobileBreakpoint;
     if (!isMobile) {
-      // Desktop/web: vertical column, positioned
-      return Positioned(
-        left: 24,
-        bottom: 24,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            for (final link in kSocialLinks) ...[
-              SocialIcon(icon: link.icon, onTap: () => launchIt(link.url)),
-              const SizedBox(height: 4),
-            ],
-          ],
-        ),
-      );
+      return _buildDesktopSocialLinks();
     }
-    return SizedBox();
+    return const SizedBox.shrink();
+  }
+
+  Widget _buildDesktopSocialLinks() {
+    return Positioned(
+      left: _leftPosition,
+      bottom: _bottomPosition,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          for (final link in kSocialLinks) ...[
+            SocialMediaIcon(
+              icon: link.icon, 
+              onTap: () => launchExternalUrl(link.url),
+            ),
+            const SizedBox(height: _iconSpacing),
+          ],
+        ],
+      ),
+    );
   }
 }

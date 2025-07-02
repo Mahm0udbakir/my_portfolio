@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/nav_item.dart';
+import 'package:my_portfolio/core/shared_widgets/models/navigation_section.dart';
 import 'package:my_portfolio/core/utils/text_styles.dart';
 
 class AppBarSections extends StatelessWidget {
-  final List<NavItem> navItems;
+  final List<Section> navItems;
   final int selectedIndex;
   final void Function(int) onNavItemTap;
 

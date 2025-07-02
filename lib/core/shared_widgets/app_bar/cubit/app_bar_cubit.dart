@@ -23,12 +23,5 @@ class AppBarCubit extends Cubit<AppBarState> {
     );
   }
 
-  void setSideMenuClosed(bool closed) {
-    state.maybeWhen(
-      sideMenuState: (_, sectionIndex) {
-        emit(AppBarState.sideMenuState(isClosed: closed, sectionIndex: sectionIndex));
-      },
-      orElse: () {},
-    );
-  }
+  
 } 

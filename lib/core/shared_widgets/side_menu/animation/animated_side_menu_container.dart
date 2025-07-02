@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
-class AnimatedSideMenuPositioned extends StatelessWidget {
+class AnimatedSideMenuContainer extends StatelessWidget {
+  static const Duration _animationDuration = Duration(milliseconds: 200);
+  static const Curve _animationCurve = Curves.fastOutSlowIn;
+  static const double _closedPosition = 0.0;
+
   final bool isMobile;
   final bool isClosed;
   final double maxOffset;
   final Widget child;
 
-  const AnimatedSideMenuPositioned({
+  const AnimatedSideMenuContainer({
     super.key,
     required this.isMobile,
     required this.isClosed,
@@ -17,11 +21,12 @@ class AnimatedSideMenuPositioned extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (!isMobile) return const SizedBox.shrink();
+    
     return AnimatedPositioned(
-      duration: const Duration(milliseconds: 200),
-      curve: Curves.fastOutSlowIn,
+      duration: _animationDuration,
+      curve: _animationCurve,
       width: maxOffset,
-      right: isClosed ? -maxOffset : 0,
+      right: isClosed ? -maxOffset : _closedPosition,
       top: 0,
       bottom: 0,
       child: child,

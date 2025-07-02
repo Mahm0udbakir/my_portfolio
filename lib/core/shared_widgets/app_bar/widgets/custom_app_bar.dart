@@ -2,23 +2,25 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/logo_button.dart';
-import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/nav_item.dart';
+import 'package:my_portfolio/core/shared_widgets/models/navigation_section.dart';
 import '../cubit/app_bar_cubit.dart';
-import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/nav_sections.dart';
+import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/app_bar_sections.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final List<NavItem> navItems = const [
-    NavItem('Home', 0),
-    NavItem('About', 1),
-    NavItem('Work', 2),
-    NavItem('Skills', 3),
-    NavItem('Reviews', 4),
-    NavItem('Contact', 5),
+  static const double _mobileBreakpoint = 800.0;
+  static const double _appBarHeight = 64.0;
+  static const EdgeInsets _horizontalPadding = EdgeInsets.symmetric(horizontal: 24);
+  
+  final List<Section> navItems = const [
+    Section('Home', 0),
+    Section('About', 1),
+    Section('Work', 2),
+    Section('Skills', 3),
+    Section('Reviews', 4),
+    Section('Contact', 5),
   ];
 
-  final void Function(bool isClosed)? onMenuToggle;
-
-  const CustomAppBar({super.key, this.onMenuToggle});
+  const CustomAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +28,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: _horizontalPadding,
           height: preferredSize.height,
           child: LayoutBuilder(
             builder: (context, constraints) {
-              bool isMobile = constraints.maxWidth < 800;
+              bool isMobile = constraints.maxWidth < _mobileBreakpoint;
               final selectedIndex = context.select<AppBarCubit, int>((cubit) {
                 final state = cubit.state;
                 return state.maybeWhen(
@@ -48,8 +50,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       selectedIndex: selectedIndex,
                       onNavItemTap: (index) => context.read<AppBarCubit>().changeSection(index),
                     ),
-                  // Hamburger menu on the top right (mobile only)
-                  const Spacer(),
                 ],
               );
             },
@@ -60,5 +60,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(64);
+  Size get preferredSize => const Size.fromHeight(_appBarHeight);
 }
