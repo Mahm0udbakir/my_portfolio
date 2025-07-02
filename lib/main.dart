@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_portfolio/core/routes/app_router.dart';
 import 'core/utils/app_theme.dart';
-import 'core/presentation/navigation/portfolio_router.dart';
 import 'core/shared_widgets/app_bar/cubit/app_bar_cubit.dart';
 
 void main() {
