@@ -115,12 +115,12 @@ class MainLayout extends StatelessWidget {
 
   List<Widget> _getPageSections() {
     return [
-      HomePage(),
-      CopyrightTag(child: AboutPage()),
-      CopyrightTag(child: WorkPage()),
-      CopyrightTag(child: SkillsPage()),
-      CopyrightTag(child: ReviewsPage()),
-      CopyrightTag(child: ContactPage()),
+      HomeSection(),
+      CopyrightTag(child: AboutSection()),
+      CopyrightTag(child: WorkSection()),
+      CopyrightTag(child: SkillsSection()),
+      CopyrightTag(child: ReviewsSection()),
+      CopyrightTag(child: ContactSection()),
     ];
   }
 

@@ -1,7 +1,15 @@
+// Suggested alternative name: VerticalSectionScroller or SectionPageView
+// This widget is responsible for vertical section navigation and synchronization with the app bar/navigation dots.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../app_bar/cubit/app_bar_cubit.dart';
 
+/// A vertically scrollable page view that synchronizes with the app's navigation state.
+///
+/// - Provides vertical navigation between sections.
+/// - Listens to [AppBarCubit] to animate to the correct section.
+/// - Updates [AppBarCubit] when the user scrolls manually.
 class Scroller extends StatefulWidget {
   static const Duration _animationDuration = Duration(milliseconds: 500);
   static const Curve _animationCurve = Curves.easeInOut;
@@ -29,6 +37,7 @@ class _ScrollerState extends State<Scroller> {
     _controller.addListener(_onScroll);
   }
 
+  /// Handles scroll events and updates the navigation state if needed.
   void _onScroll() {
     if (_isAnimating) return; // Prevent feedback loop
     
@@ -53,6 +62,7 @@ class _ScrollerState extends State<Scroller> {
       listener: (context, state) async {
         state.maybeWhen(
           section: (index) => _handleSectionChange(index),
+          sideMenuState: (_, sectionIndex) => _handleSectionChange(sectionIndex),
           orElse: () {},
         );
       },
@@ -65,6 +75,7 @@ class _ScrollerState extends State<Scroller> {
     );
   }
 
+  /// Animates to the given section index if not already there.
   Future<void> _handleSectionChange(int index) async {
     if (_controller.hasClients && _controller.page?.round() != index) {
       _isAnimating = true;
@@ -77,6 +88,7 @@ class _ScrollerState extends State<Scroller> {
     }
   }
 
+  /// Updates the navigation state when the user scrolls manually.
   void _handlePageChanged(int index) {
     if (!_isAnimating) {
       context.read<AppBarCubit>().changeSection(index);

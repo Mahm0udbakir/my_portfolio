@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utils/app_colors.dart';
 
-class SkillsPage extends StatelessWidget {
-  const SkillsPage({super.key});
+class SkillsSection extends StatelessWidget {
+  const SkillsSection({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,13 +1,21 @@
+// Suggested alternative name for MyApp: PortfolioApp or BakirPortfolioApp
+// This file is the entry point of the Flutter application.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_portfolio/core/routes/app_router.dart';
 import 'core/utils/app_theme.dart';
 import 'core/shared_widgets/app_bar/cubit/app_bar_cubit.dart';
 
+/// The main entry point of the application.
 void main() {
   runApp(const MyApp());
 }
 
+/// The root widget of the application.
+///
+/// - Provides [AppBarCubit] to the widget tree.
+/// - Sets up routing, theming, and app metadata.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

@@ -36,7 +36,7 @@ final portfolioRouter = GoRouter(
       routes: [
         GoRoute(
           path: PortfolioRoutes.home,
-          builder: (context, state) => const HomePage(),
+          builder: (context, state) => const HomeSection(),
           routes: _buildFeatureRoutes(),
         ),
       ],
@@ -53,23 +53,23 @@ List<GoRoute> _buildFeatureRoutes() {
   return [
     GoRoute(
       path: PortfolioRoutes.about,
-      builder: (context, state) => const AboutPage(),
+      builder: (context, state) => const AboutSection(),
     ),
     GoRoute(
       path: PortfolioRoutes.work,
-      builder: (context, state) => const WorkPage(),
+      builder: (context, state) => const WorkSection(),
     ),
     GoRoute(
       path: PortfolioRoutes.skills,
-      builder: (context, state) => const SkillsPage(),
+      builder: (context, state) => const SkillsSection(),
     ),
     GoRoute(
       path: PortfolioRoutes.reviews,
-      builder: (context, state) => const ReviewsPage(),
+      builder: (context, state) => const ReviewsSection(),
     ),
     GoRoute(
       path: PortfolioRoutes.contact,
-      builder: (context, state) => const ContactPage(),
+      builder: (context, state) => const ContactSection(),
     ),
   ];
 }

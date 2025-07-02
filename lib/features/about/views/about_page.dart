@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/utils/app_colors.dart';
 
-class AboutPage extends StatelessWidget {
-  const AboutPage({super.key});
+class AboutSection extends StatelessWidget {
+  const AboutSection({super.key});
 
   @override
   Widget build(BuildContext context) {
