@@ -3,12 +3,12 @@ import 'package:my_portfolio/core/utils/app_colors.dart';
 
 class HomeSection extends StatelessWidget {
   const HomeSection({super.key});
+
   @override
-  Widget build(BuildContext context) => Scaffold(
-    extendBodyBehindAppBar: true,
-    body: Container(
+  Widget build(BuildContext context) {
+    return Container(
       color: AppColors.white,
       child: Center(child: Text('Home')),
-    ),
-  );
+    );
+  }
 } 

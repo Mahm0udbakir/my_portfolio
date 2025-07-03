@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/shared_widgets/constants/rive_assets.dart';
 import 'package:rive/rive.dart';
 
-class SideMenuTile extends StatelessWidget {
+class SideMenuSection extends StatelessWidget {
   static const Duration _animationDuration = Duration(milliseconds: 250);
   static const double _tileHeight = 56.0;
-  static const double _activeWidthMultiplier = 0.70;
+  static const double _activeWidthMultiplier = 0.65;
   static const double _borderRadius = 10.0;
   static const double _padding = 8.0;
   static const double _iconSize = 34.0;
@@ -18,7 +18,7 @@ class SideMenuTile extends StatelessWidget {
   final VoidCallback onTap;
   final ValueChanged<Artboard> riveOnInit;
 
-  const SideMenuTile({
+  const SideMenuSection({
     super.key,
     required this.menu,
     required this.isActive,

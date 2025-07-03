@@ -10,9 +10,9 @@ import 'package:my_portfolio/core/layout/main_layout.dart';
 class HomeShellAnimationController extends StatefulWidget {
   static const Duration _animationDuration = Duration(milliseconds: 200);
   static const double _translateBegin = 0.0;
-  static const double _translateEnd = 1.0;
+  static const double _translateEnd = 0.87;
   static const double _scaleBegin = 1.0;
-  static const double _scaleEnd = 0.8;
+  static const double _scaleEnd = 0.92;
   static const Curve _animationCurve = Curves.fastOutSlowIn;
 
   const HomeShellAnimationController({super.key});

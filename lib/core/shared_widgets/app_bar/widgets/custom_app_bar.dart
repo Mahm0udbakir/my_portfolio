@@ -9,8 +9,10 @@ import 'package:my_portfolio/core/shared_widgets/app_bar/widgets/app_bar_section
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   static const double _mobileBreakpoint = 800.0;
   static const double _appBarHeight = 64.0;
-  static const EdgeInsets _horizontalPadding = EdgeInsets.symmetric(horizontal: 24);
-  
+  static const EdgeInsets _horizontalPadding = EdgeInsets.symmetric(
+    horizontal: 24,
+  );
+
   final List<Section> navItems = const [
     Section('Home', 0),
     Section('About', 1),
@@ -48,7 +50,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     AppBarSections(
                       navItems: navItems,
                       selectedIndex: selectedIndex,
-                      onNavItemTap: (index) => context.read<AppBarCubit>().changeSection(index),
+                      onNavItemTap:
+                          (index) =>
+                              context.read<AppBarCubit>().changeSection(index),
                     ),
                 ],
               );

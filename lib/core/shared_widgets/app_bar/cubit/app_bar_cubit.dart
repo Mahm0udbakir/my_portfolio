@@ -22,6 +22,4 @@ class AppBarCubit extends Cubit<AppBarState> {
       orElse: () {},
     );
   }
-
-  
 } 

@@ -1,13 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:my_portfolio/core/shared_widgets/constants/rive_assets.dart';
-
-part 'side_menu_cubit.freezed.dart';
-
-@freezed
-class SideMenuState with _$SideMenuState {
-  const factory SideMenuState({required RiveAsset selectedMenu}) = _SideMenuState;
-}
+import 'package:my_portfolio/core/shared_widgets/side_menu/cubit/side_menu_state.dart';
 
 class SideMenuCubit extends Cubit<SideMenuState> {
   SideMenuCubit() : super(SideMenuState(selectedMenu: sideMenus.first));

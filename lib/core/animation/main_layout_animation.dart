@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-class Main3DAnimation extends StatelessWidget {
+class MainLayoutAnimation extends StatelessWidget {
   static const double _perspectiveValue = 0.001;
   static const double _rotationAngle = -30.0;
   static const double _radiansPerDegree = pi / 180;
@@ -14,7 +14,7 @@ class Main3DAnimation extends StatelessWidget {
   final double maxOffset;
   final Widget child;
 
-  const Main3DAnimation({
+  const MainLayoutAnimation({
     super.key,
     required this.translateAnimation,
     required this.scaleAnimation,
@@ -26,7 +26,6 @@ class Main3DAnimation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform(
-      alignment: Alignment.center,
       transform: _buildTransformMatrix(),
       child: Transform.translate(
         offset: _buildTranslationOffset(),

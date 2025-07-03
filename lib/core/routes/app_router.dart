@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_portfolio/core/shared_widgets/animation/home_shell_animation_controller.dart';
-import 'package:my_portfolio/features/about/views/about_page.dart';
-import 'package:my_portfolio/features/home/views/home_page.dart';
-import 'package:my_portfolio/features/work/views/work_page.dart';
-import 'package:my_portfolio/features/skills/views/skills_page.dart';
-import 'package:my_portfolio/features/contact/views/contact_page.dart';
-import 'package:my_portfolio/features/reviews/views/reviews_page.dart';
+import 'package:my_portfolio/features/about/views/about_section.dart';
+import 'package:my_portfolio/features/home/views/home_section.dart';
+import 'package:my_portfolio/features/work/views/work_section.dart';
+import 'package:my_portfolio/features/skills/views/skills_section.dart';
+import 'package:my_portfolio/features/contact/views/contact_section.dart';
+import 'package:my_portfolio/features/reviews/views/reviews_section.dart';
 
 /// Route paths for the portfolio application.
 /// 

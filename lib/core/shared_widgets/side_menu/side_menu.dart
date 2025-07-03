@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/shared_widgets/constants/rive_assets.dart';
 import 'package:my_portfolio/core/shared_widgets/models/social_links.dart';
 import 'package:my_portfolio/core/shared_widgets/side_menu/cubit/side_menu_cubit.dart';
+import 'package:my_portfolio/core/shared_widgets/side_menu/cubit/side_menu_state.dart';
 import 'package:my_portfolio/core/shared_widgets/side_menu/utils/rive_utils.dart';
 import 'package:my_portfolio/core/shared_widgets/side_menu/widgets/info_card.dart';
 import 'package:my_portfolio/core/shared_widgets/side_menu/widgets/section_header.dart';
@@ -44,7 +45,7 @@ class SideMenu extends StatelessWidget {
                   _buildInfoCard(),
                   _buildSectionsHeader(),
                   const SizedBox(height: _sectionSpacing),
-                  ..._buildMenuTiles(state, context),
+                  ..._buildMenuSections(state, context),
                   _buildAccountsHeader(),
                   _buildSocialLinks(),
                 ],
@@ -67,8 +68,8 @@ class SideMenu extends StatelessWidget {
     return const SectionHeader(text: 'Sections');
   }
 
-  List<Widget> _buildMenuTiles(SideMenuState state, BuildContext context) {
-    return sideMenus.map((RiveAsset item) => SideMenuTile(
+  List<Widget> _buildMenuSections(SideMenuState state, BuildContext context) {
+    return sideMenus.map((RiveAsset item) => SideMenuSection(
       menu: item,
       isActive: state.selectedMenu == item,
       riveOnInit: (Artboard artboard) => _initializeRiveController(item, artboard),

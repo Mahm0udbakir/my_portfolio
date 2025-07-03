@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AnimatedSideMenuContainer extends StatelessWidget {
+class SideMenuAnimation extends StatelessWidget {
   static const Duration _animationDuration = Duration(milliseconds: 200);
   static const Curve _animationCurve = Curves.fastOutSlowIn;
   static const double _closedPosition = 0.0;
@@ -10,7 +10,7 @@ class AnimatedSideMenuContainer extends StatelessWidget {
   final double maxOffset;
   final Widget child;
 
-  const AnimatedSideMenuContainer({
+  const SideMenuAnimation({
     super.key,
     required this.isMobile,
     required this.isClosed,
